@@ -1,0 +1,60 @@
+{#
+	on garde une seule page pour afficher toutes les grilles afin que les futurs liens morts pointent toujours sur une page qui existe
+#}
+
+{% extends "base.html" %}
+{% import "macros.html" as macros %}
+
+{% block title %}
+	Programme - 
+{% endblock title %}
+
+{% block content %}
+
+<div class="hs__wrapper grille_wrapper">
+	<ul id="js-daysFilter" class="days_list hs js-sticky">
+		<li data-day="1" onclick="openTab(0, 'Lundi')" class="active">Lundi</li>
+		<li data-day="2"  onclick="openTab(0, 'Mardi')">Mardi</li>
+		<li data-day="3" onclick="openTab(0, 'Mercredi')">Mercredi</li>
+		<li  data-day="4"onclick="openTab(0, 'Jeudi')">Jeudi</li>
+		<li  data-day="5"onclick="openTab(0, 'Vendredi')">Vendredi</li>
+		<li  data-day="6"onclick="openTab(0, 'Samedi')">Samedi</li>
+		<li  data-day="7"onclick="openTab(0, 'Dimanche')">Dimanche</li>
+	</ul>
+</div>
+
+<div style="display: none;">
+
+<nav id="prog">
+{% for var in data.prog.patterns.0.vars %}
+	{% if loop.last == false %}
+		{% set index = loop.index0 %}
+		<div class="hs__wrapper grille_wrapper">
+			<ul id="js-daysFilter" class="days_list hs js-sticky">
+			{% for value in data.prog.variables[var] %}
+				<button class="tablink" id="link-{{index}}-{{value}}" onclick="openTab({{index}}, '{{value}}')">{{value}}</button>
+			{% endfor %}
+			</ul>
+		</div>
+	{% endif %}
+{% endfor %}
+</nav>
+
+</div>
+
+
+{% for pattern in data.prog.patterns %}
+{{ macros::resolve_pattern(pattern=pattern.pattern, title=pattern.title, vars=pattern.vars, variables=data.prog.variables, depth=0, replaced="", stackedReplaced="") }}
+{% endfor %}
+
+
+
+<script>
+	window.setTimeout(() => {
+		openTab(0, null, true);
+	}, 1000);
+</script>
+
+
+
+{% endblock content %}

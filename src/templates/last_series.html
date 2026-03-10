@@ -1,0 +1,20 @@
+<section class="podcasts-section js-section_title">
+	<div class="container-fullslider">
+		<div class="swiper-container swiper_fiveposts">
+			
+			<div class="swiper-wrapper">
+		{% for t in data.series_by_last_episode %}
+			{# TODO paginate #}
+			{% if loop.index > data.config.LastSeriesInHome | int and not show_all_series %}
+				{% break %}
+			{% endif %}
+			{% set serie = data.series[t[0]].fic %}
+			{% include "single_serie.html" %}
+		{% endfor %}
+	</div>
+	<div class="swiper-button-prev"></div>
+	<div class="swiper-button-next"></div>
+
+		</div>
+	</div>
+</section>
