@@ -1,4 +1,4 @@
-name: Build and Deploy Rust + Player
+name: Deploy site
 
 on:
   push:
