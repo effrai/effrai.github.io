@@ -9,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{{data.oma.args.website_prefix}}/style.css" />
     <style>.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+	
+	<style id="rocket-lazyrender-inline-css">[data-wpr-lazyrender] {content-visibility: auto;}</style>
 
     <link rel="icon" href="{{data.oma.args.website_prefix}}/img/cropped-favicon-4-t-64x64.png" sizes="32x32" />
     <link rel="icon" href="{{data.oma.args.website_prefix}}/img/cropped-favicon-4-t-384x384.png" sizes="192x192" />
@@ -42,8 +44,8 @@
 										<div class="logo_site">
 																				<h1>
 													<a class="brand" href="{{data.oma.args.website_prefix}}/index.html">
-								<img onclick="initCanvas()" class="logo logo-white" src="{{data.oma.args.website_prefix}}/img/logo_site_w.png" alt="Liaison commune de lyon" />
-								<img onclick="initCanvas()" class="logo logo-black" src="{{data.oma.args.website_prefix}}/img/logo_site.png" alt="Liaison commune de lyon" />
+								<img class="logo logo-white" src="{{data.oma.args.website_prefix}}/img/logo_site_w.png" alt="Liaison commune de lyon" />
+								<img class="logo logo-black" src="{{data.oma.args.website_prefix}}/img/logo_site.png" alt="Liaison commune de lyon" />
 																					
 														</a>
 														</h1>
@@ -347,11 +349,23 @@
 			];
 		</script>
 
+		<script src="https://esm.sh/animejs">
+			import { createTimeline } from 'https://esm.sh/animejs';
+
+				const chaagename = createTimeline({
+				loop: true,
+				alternate: true,
+				delay: 3000,
+				})
+				.add('.square',   { x: '15rem' });
+
+		</script>
+
 		
 		<script type="speculationrules">
 		{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/sites/2/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/lnei-wp-theme-child-nova/resources/*","/wp-content/themes/lnei-wp-theme/resources/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
 		</script>
-
+		
 		<script type="text/javascript"
 			src="{{data.oma.args.website_prefix}}/wp-content/themes/lnei-wp-theme-child-nova/dist/mainca34.js"
 			id="mainjs-js"
