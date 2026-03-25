@@ -101,6 +101,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let articles_dir = oma.args.output.clone() + "/articles/";
     std::fs::create_dir_all(articles_dir.clone())?;
 	
+
     println!("Construction de Tera et chargement des modèles de page…");
     let mut tera = Tera::default();
     tera.register_function("helper_test", helper_test);
@@ -131,10 +132,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         ("Événements.html", include_str!("templates/Événements.html")),
         ("Tout_sur_la_Radio.html", include_str!("templates/Tout_sur_la_Radio.html")),
         ("Activités_locales.html", include_str!("templates/Activités_locales.html")),
+
         ("Critique_du_Parti.html", include_str!("templates/Critique_du_Parti.html")),
         ("Proposition_10_sept.html", include_str!("templates/Proposition_10_sept.html")),
-
+        ("TDS_FA_Lyon.html", include_str!("templates/TDS_FA_Lyon.html")),
+        ("Trans_FA_Lyon.html", include_str!("templates/Trans_FA_Lyon.html")),
         ("Boulangerie_ile.html", include_str!("templates/Boulangerie_ile.html")),
+        ("Jeu_Arago_FA_Lyon.html", include_str!("templates/Jeu_Arago_FA_Lyon.html")),
+        ("Rojava_assiege.html", include_str!("templates/communiques/Rojava_assiege.html")),
 
         ("carte.html", include_str!("templates/carte.html")),
                 
@@ -159,6 +164,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     ("img", include_dir!("src/templates/img")),
 	];
 
+
+
+
     let mut context = tera::Context::new();
     context.insert("data", &data);
 
@@ -177,6 +185,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 		}
 	}
 
+
+    
     println!("Construction des pages web standard…");
     let _ = std::fs::write(
         oma.args.output.clone() + "/index.html",
@@ -203,7 +213,23 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         oma.args.output.clone() + "/articles/Critique_du_Parti.html",
         tera.render("Critique_du_Parti.html", &context).unwrap()
     );
+    let _ = std::fs::write(
+        oma.args.output.clone() + "/articles/Rojava_assiege.html",
+        tera.render("Rojava_assiege.html", &context).unwrap()
+    );
+    let _ = std::fs::write(
+        oma.args.output.clone() + "/articles/Trans_FA_Lyon.html",
+        tera.render("Trans_FA_Lyon.html", &context).unwrap()
+    );
+     let _ = std::fs::write(
+        oma.args.output.clone() + "/articles/Jeu_Arago_FA_Lyon.html",
+        tera.render("Jeu_Arago_FA_Lyon.html", &context).unwrap()
+    );
 
+    let _ = std::fs::write(
+        oma.args.output.clone() + "/articles/TDS_FA_Lyon.html",
+        tera.render("TDS_FA_Lyon.html", &context).unwrap()
+    );
     let _ = std::fs::write(
         oma.args.output.clone() + "/articles/Proposition_10_sept.html",
         tera.render("Proposition_10_sept.html", &context).unwrap()
@@ -264,6 +290,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         oma.args.output.clone() + "/script/main.js",
         include_str!("script/main.js")
     );
+
 
 
     println!("Construction des pages web personnalisées…");
