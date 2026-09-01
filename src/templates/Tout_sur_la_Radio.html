@@ -51,6 +51,12 @@
                                 <div class="card-podcast__content">
                                     <h2><a href="">Anarchistes, Sortez prendre l'air !</a></h2>
                                     <p>Chronique pour rencontrer l'autogestion et l'autonomie à Lyon et Villeurbanne</p>
+                                    <div class="container">
+                                        <audio controls style="width: 100%; margin-bottom: 20px">
+                                            {{ with .Get "wav" }}<source type="audio/wav" src="./episode/effeuille_emission_2025.wav">{{ end }}
+                                            Your browser does not support the audio element.
+                                        </audio>
+                                    </div>
                                 </div>
                             </div>
                         </div>
