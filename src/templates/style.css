@@ -2,7 +2,7 @@
  * 							General
  *****************************************************************************/
 
- @media (max-width: 768){
+ @media (max-width: 768px) {
   .no_phone {
       display: none;
   }
@@ -25,7 +25,7 @@
 }
 
 
- @media (min-width: 769) {
+ @media (min-width: 769px) {
     .phone{
       display: none;
     }
